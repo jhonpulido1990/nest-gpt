@@ -1,3 +1,11 @@
-export const orthographyCheckCase = async () => {
-  return { hola: 'Mundo desde UseCase' };
+interface Options {
+  prompt: string;
+}
+
+export const orthographyCheckCase = async (options: Options) => {
+  const { prompt } = options;
+  return {
+    prompt: prompt,
+    apikey: process.env.OPENAI_API_KEY,
+  };
 };
