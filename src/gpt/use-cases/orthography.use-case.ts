@@ -14,7 +14,21 @@ export const orthographyCheckCase = async (
     messages: [
       {
         role: 'system',
-        content: 'eres un asistente muy util.',
+        content: `
+        Te seran proveidos textos en español con posibles errores ortograficos y gramaticales,
+        las palabras usadas deben de existir en el diccionario de la real academia española,
+        Debes de responder en formato json,
+        tu tarea es corregirlos y retornar informacion soluciones,
+        tambien debes de dar un porcentaje de acierto por el usuario,
+
+        si no hay errores, debes de retornar un mensaje de felicitaciones.
+        ejemplo de salida:
+        {
+          userScore: number,
+          errors: string[], // ['error -> solucion']
+          mensaje: string, // usa emojis y texto para felicitar al ususario
+        }
+        `,
       },
       {
         role: 'user',
@@ -22,6 +36,8 @@ export const orthographyCheckCase = async (
       },
     ],
     model: 'gpt-4o-mini',
+    temperature: 0.3,
+    max_tokens: 150,
   });
 
   console.log(completion, prompt);
