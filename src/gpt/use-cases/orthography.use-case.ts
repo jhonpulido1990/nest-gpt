@@ -26,7 +26,7 @@ export const orthographyCheckCase = async (
         {
           userScore: number,
           errors: string[], // ['error -> solucion']
-          mensaje: string, // usa emojis y texto para felicitar al ususario
+          message: string, // usa emojis y texto para felicitar al ususario
         }
         `,
       },
