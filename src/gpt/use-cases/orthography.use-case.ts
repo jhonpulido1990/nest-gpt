@@ -38,9 +38,11 @@ export const orthographyCheckCase = async (
     model: 'gpt-4o-mini',
     temperature: 0.3,
     max_tokens: 150,
+    response_format: {
+      type: 'json_object',
+    },
   });
 
-  console.log(completion, prompt);
-
-  return completion.choices[0];
+  const jsonResp = JSON.parse(completion.choices[0].message.content);
+  return jsonResp;
 };
