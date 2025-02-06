@@ -32,7 +32,7 @@ export class GptService {
     return await prosConsDicusserStreamUseCase(this.openai, { prompt });
   }
 
-  async translate({ prompt, lang }: TranslateDto) {
+  async translateText({ prompt, lang }: TranslateDto) {
     return await translateUseCase(this.openai, { prompt, lang });
   }
 }

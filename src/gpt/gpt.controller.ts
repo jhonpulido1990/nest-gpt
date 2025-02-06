@@ -40,8 +40,8 @@ export class GptController {
   }
 
   @Post('translate')
-  translate(@Body() translateDto: TranslateDto) {
+  translateText(@Body() translateDto: TranslateDto) {
     //return orthographyDto;
-    return this.gptService.translate(translateDto);
+    return this.gptService.translateText(translateDto);
   }
 }
