@@ -6,6 +6,7 @@ import OpenAI from 'openai';
 
 import {
   audioToTextUseCase,
+  imageGenerationUseCase,
   orthographyCheckCase,
   prosConsDicusserStreamUseCase,
   prosConsDicusserUseCase,
@@ -14,7 +15,12 @@ import {
 } from './use-cases';
 import { OrthographyDto } from './dtos/orthography.dto';
 import { ProsConsDicusserDto } from './dtos/prosConsDiscuser.dto';
-import { AudioToTextDto, TextToAudioDto, TranslateDto } from './dtos';
+import {
+  AudioToTextDto,
+  ImageGenerationDto,
+  TextToAudioDto,
+  TranslateDto,
+} from './dtos';
 
 @Injectable()
 export class GptService {
@@ -63,5 +69,9 @@ export class GptService {
   ) {
     const { prompt } = audioToTextDto;
     return await audioToTextUseCase(this.openai, { audioFile, prompt });
+  }
+
+  async imageGeneration(imageGenerationDto: ImageGenerationDto) {
+    return imageGenerationUseCase(this.openai, imageGenerationDto);
   }
 }
