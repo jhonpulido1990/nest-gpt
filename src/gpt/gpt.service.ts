@@ -5,6 +5,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import OpenAI from 'openai';
 
 import {
+  audioToTextUseCase,
   orthographyCheckCase,
   prosConsDicusserStreamUseCase,
   prosConsDicusserUseCase,
@@ -13,7 +14,7 @@ import {
 } from './use-cases';
 import { OrthographyDto } from './dtos/orthography.dto';
 import { ProsConsDicusserDto } from './dtos/prosConsDiscuser.dto';
-import { TextToAudioDto, TranslateDto } from './dtos';
+import { AudioToTextDto, TextToAudioDto, TranslateDto } from './dtos';
 
 @Injectable()
 export class GptService {
@@ -54,5 +55,13 @@ export class GptService {
     if (!wasFound) throw new NotFoundException(`File ${fieldID} not found`);
 
     return filePath;
+  }
+
+  async audioToText(
+    audioFile: Express.Multer.File,
+    audioToTextDto: AudioToTextDto,
+  ) {
+    const { prompt } = audioToTextDto;
+    return await audioToTextUseCase(this.openai, { audioFile, prompt });
   }
 }
