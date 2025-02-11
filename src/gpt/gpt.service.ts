@@ -72,7 +72,7 @@ export class GptService {
   }
 
   async imageGeneration(imageGenerationDto: ImageGenerationDto) {
-    return imageGenerationUseCase(this.openai, imageGenerationDto);
+    return await imageGenerationUseCase(this.openai, imageGenerationDto);
   }
 
   getGeneratedImage(fileName: string) {
@@ -82,7 +82,6 @@ export class GptService {
     if (!exist) {
       throw new NotFoundException('File not found');
     }
-    console.log({ filePath });
 
     return filePath;
   }
