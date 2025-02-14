@@ -130,7 +130,7 @@ export class GptController {
     @Res() res: Response,
     @Param('filename') fileName: string,
   ) {
-    const filePath = await this.gptService.getGeneratedImage(fileName);
+    const filePath = this.gptService.getGeneratedImage(fileName);
 
     res.status(HttpStatus.OK);
     res.sendFile(filePath);

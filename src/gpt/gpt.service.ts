@@ -77,9 +77,9 @@ export class GptService {
 
   getGeneratedImage(fileName: string) {
     const filePath = path.resolve('./', './generated/images/', fileName);
-    const exist = fs.existsSync(fileName);
+    const exists = fs.existsSync(filePath);
 
-    if (!exist) {
+    if (!exists) {
       throw new NotFoundException('File not found');
     }
 
