@@ -7,6 +7,7 @@ import OpenAI from 'openai';
 import {
   audioToTextUseCase,
   imageGenerationUseCase,
+  imageVariationUseCase,
   orthographyCheckCase,
   prosConsDicusserStreamUseCase,
   prosConsDicusserUseCase,
@@ -18,6 +19,7 @@ import { ProsConsDicusserDto } from './dtos/prosConsDiscuser.dto';
 import {
   AudioToTextDto,
   ImageGenerationDto,
+  ImageVariationDto,
   TextToAudioDto,
   TranslateDto,
 } from './dtos';
@@ -84,5 +86,9 @@ export class GptService {
     }
 
     return filePath;
+  }
+
+  async generationImageVariation({ baseImage }: ImageVariationDto) {
+    return imageVariationUseCase(this.openai, { baseImage });
   }
 }
