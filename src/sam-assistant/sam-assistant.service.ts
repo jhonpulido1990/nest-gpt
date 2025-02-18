@@ -7,6 +7,7 @@ import {
   createThreadUseCase,
 } from './uses-cases';
 import { QuestionDto } from './dtos/question.dto';
+import { getMessageListUseCase } from './uses-cases/get-message-list.use-case';
 
 @Injectable()
 export class SamAssistantService {
@@ -30,5 +31,7 @@ export class SamAssistantService {
       runId: run.id,
       threadId: threadId,
     });
+    const messages = await getMessageListUseCase(this.openai, { threadId });
+    return messages.reverse();
   }
 }
