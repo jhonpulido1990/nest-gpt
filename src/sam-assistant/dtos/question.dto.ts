@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 
 export class QuestionDto {
   @IsString()
-  readonly thread: string;
+  readonly threadId: string;
 
   @IsString()
   readonly question: string;
